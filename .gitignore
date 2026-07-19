@@ -1,0 +1,10 @@
+# 扩展私钥——绝不入库（CWS 身份凭证）
+wisp-extension-key.pem
+
+# 构建产物
+dist/
+icon/AppIcon.iconset/
+*.log
+
+# 系统
+.DS_Store
