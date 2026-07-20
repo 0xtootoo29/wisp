@@ -16,9 +16,9 @@ os.makedirs(ICONSET, exist_ok=True)
 
 src = Image.open(SRC).convert("RGBA")
 
-# 1) 测圆角方 bbox：亮度 > 25 的像素（四角纯黑，方块是深藏蓝）
+# 1) 测圆角方 bbox：亮度 > 12 的像素（四角纯黑；深藏蓝底板亮度约 20，阈值必须低于它）
 gray = src.convert("L")
-bbox = gray.point(lambda p: 255 if p > 25 else 0).getbbox()
+bbox = gray.point(lambda p: 255 if p > 12 else 0).getbbox()
 assert bbox, "bbox 检测失败：全图都低于阈值"
 plate = src.crop(bbox)
 

@@ -1,5 +1,7 @@
 # Wisp（雾灵）
 
+![Wisp](assets/banner.png)
+
 桌面上一颗液态玻璃悬浮球。点一下，直接和 ChatGPT 官方实时语音开聊。
 
 A liquid-glass orb on your macOS desktop — one click to start a realtime voice chat with ChatGPT's official GPT Live, on your own Plus subscription.
@@ -38,6 +40,8 @@ curl -fsSL https://raw.githubusercontent.com/0xtootoo29/wisp/main/install.sh | b
 2. **装配套 Chrome 扩展**——它负责让后台标签页保持语音连接，并在你点球时替你按下页面上的语音按钮
 
 满足之后就是零窗口打扰：语音在后台标签页接通，屏幕上不发生任何跳转。
+
+![零窗口打扰](assets/scene.png)
 
 ## 功能
 
