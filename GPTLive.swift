@@ -773,7 +773,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func openStore() {
-        NSWorkspace.shared.open(URL(string: "https://chromewebstore.google.com/detail/icbpolfbnfgcloeeahjmiknhfflnefkp")!)
+        NSWorkspace.shared.open(URL(string: "https://chromewebstore.google.com/detail/mghelpfopaeahcpdgjnbffnmkeapgpnn")!)
     }
     @objc func setupTab() { postCmd("setup-tab") }
 

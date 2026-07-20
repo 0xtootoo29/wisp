@@ -5,7 +5,7 @@
 ## 红线
 
 - `wisp-extension-key.pem` 是扩展身份私钥：**绝不提交、绝不打包进任何 zip**（.gitignore 已挡，改打包脚本时重新确认）。
-- 扩展 ID `icbpolfbnfgcloeeahjmiknhfflnefkp` 是全链路契约（NM 清单 / install.sh / 商店），不得变更 manifest 的 `key`。
+- 扩展双 ID 是全链路契约：商店正式版 `mghelpfopaeahcpdgjnbffnmkeapgpnn`（CWS 分配）+ 本地开发版 `icbpolfbnfgcloeeahjmiknhfflnefkp`（manifest 预埋 key，不得变更）。NM 清单 allowed_origins 必须同时含两者；商店上传包必须剥离 key 字段（CWS 拒收）。
 - 不引入任何逆向 / API 调用路线：Wisp 只允许"替用户点官方页面按钮"。
 
 ## 构建与验证

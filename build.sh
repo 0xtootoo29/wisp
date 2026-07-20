@@ -28,8 +28,10 @@ cp skins/skin*.png "$APP/Contents/Resources/skins/"
 cp icon/AppIcon.icns "$APP/Contents/Resources/"
 codesign -s - --force "$APP"
 
-# Native Messaging 清单：Chrome 由此找到 wisp-bridge（扩展 ID 固定，manifest.json 预埋 key）
-EXT_ID=$(head -1 extension-id.txt)
+# Native Messaging 清单：Chrome 由此找到 wisp-bridge
+# 双 ID：本地开发版（extension-id.txt，manifest 预埋 key）+ Chrome 商店正式版
+DEV_ID=$(head -1 extension-id.txt)
+STORE_ID="mghelpfopaeahcpdgjnbffnmkeapgpnn"
 NM_DIR="$HOME/Library/Application Support/Google/Chrome/NativeMessagingHosts"
 mkdir -p "$NM_DIR"
 cat > "$NM_DIR/com.tootoo.wisp.json" <<NM
@@ -38,7 +40,7 @@ cat > "$NM_DIR/com.tootoo.wisp.json" <<NM
   "description": "Wisp native messaging bridge",
   "path": "$HOME/Applications/Wisp.app/Contents/MacOS/wisp-bridge",
   "type": "stdio",
-  "allowed_origins": ["chrome-extension://$EXT_ID/"]
+  "allowed_origins": ["chrome-extension://$STORE_ID/", "chrome-extension://$DEV_ID/"]
 }
 NM
 pkill -x GPTLive 2>/dev/null || true

@@ -4,7 +4,8 @@
 set -euo pipefail
 
 REPO="0xtootoo29/wisp"
-EXT_ID="icbpolfbnfgcloeeahjmiknhfflnefkp"          # 扩展 ID（manifest key 锁定，与 CWS 一致）
+EXT_ID="mghelpfopaeahcpdgjnbffnmkeapgpnn"          # Chrome 商店正式版扩展 ID
+DEV_ID="icbpolfbnfgcloeeahjmiknhfflnefkp"          # 本地开发版（manifest 预埋 key）ID
 CWS_URL="https://chromewebstore.google.com/detail/$EXT_ID"
 APP_DIR="$HOME/Applications"
 APP="$APP_DIR/Wisp.app"
@@ -40,7 +41,7 @@ for d in "Google/Chrome" "Google/Chrome Beta" "Arc/User Data"; do
   "description": "Wisp native messaging bridge",
   "path": "$APP/Contents/MacOS/wisp-bridge",
   "type": "stdio",
-  "allowed_origins": ["chrome-extension://$EXT_ID/"]
+  "allowed_origins": ["chrome-extension://$EXT_ID/", "chrome-extension://$DEV_ID/"]
 }
 NM
 done

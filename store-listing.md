@@ -37,9 +37,6 @@ https://github.com/0xtootoo29/wisp
 - 商店图标 128×128：`extension/icons/icon128.png`
 - 截图（1280×800，至少 1 张）：待 too 提供实景截图后由 Claude 裁制
 
-## ⚠️ 上传后关键检查点
-上传 zip 后，看控制台里生成的**项目 ID** 是否等于
-`icbpolfbnfgcloeeahjmiknhfflnefkp`（manifest 预埋 key 应保持此 ID）。
-- 相同 → 什么都不用做；
-- 不同 → 把新 ID 告诉 Claude，将两个 ID 一起写进 Native Messaging 清单
-  的 allowed_origins（本地开发版 + 商店版共存），并更新 install.sh。
+## ✅ ID 已定（2026-07-20 接线完成）
+商店正式版项目 ID = `mghelpfopaeahcpdgjnbffnmkeapgpnn`（CWS 分配；上传包必须剥离 manifest 的 key 字段，CWS 拒收含 key 的清单）。
+本地开发版 ID = `icbpolfbnfgcloeeahjmiknhfflnefkp`。两个 ID 均已写入 NM 清单 allowed_origins（build.sh / install.sh），App 商店按钮指向商店版。
