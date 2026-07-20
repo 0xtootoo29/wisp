@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Wisp — ChatGPT Voice",
   "description": "Wisp 悬浮球伴侣扩展：后台标签保持语音连接 + 启动/结束 ChatGPT 语音",
-  "version": "0.3",
+  "version": "1.0",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwdvabjxzj701Bd4bntcwkDqRYX9LwJMf6eGJRfNry/5+7EAGlP1Rz5iwzWC/VQ0bAGzxMsgmJXBxL0Tpm1Hb1/J135bmzNfd8+JNWHKKHHVqpFv9S4ueP6JIptlqw7FxWzqje62EsDfCWdJdBSK+zhvdS3JFg/Gh7yPre8CmqZoWlu/jEBuVO12E2VmtQkglTQ0Jhk3hyeOm6oE+LFPI9Dt7gKx9h06bCBgSUqNqrYtfyVorgoby6UI72AIny8yQDERAKty+gMqduReh6/5R7/tC82xqdp+rcm7ItWywXFS8tPNjnBZg76cD6d2u9fBa/o/AbZJVmoR5iEdMuOKR4QIDAQAB",
   "icons": {
     "16": "icons/icon16.png",

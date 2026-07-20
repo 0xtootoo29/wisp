@@ -12,7 +12,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
   <key>CFBundleName</key><string>Wisp</string>
   <key>CFBundleDisplayName</key><string>Wisp</string>
   <key>CFBundleIdentifier</key><string>local.tootoo.gptlive</string>
-  <key>CFBundleVersion</key><string>0.5</string>
+  <key>CFBundleVersion</key><string>1.0</string>
+  <key>CFBundleShortVersionString</key><string>1.0</string>
   <key>CFBundleExecutable</key><string>GPTLive</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>

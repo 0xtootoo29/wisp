@@ -836,7 +836,7 @@ final class OnboardUI {
         let group = glassGroup(x: pad, y: y, w: W - pad * 2, h: rowH * 3, radius: 10, theme: theme)
         root.addSubview(group)
         let steps: [(Bool, Bool, String, String, String?, (() -> Void)?)] = [
-            (true, true, "安装 Wisp App", "已安装 · 版本 0.13", nil, nil),
+            (true, true, "安装 Wisp App", "已安装 · v1.0", nil, nil),
             (ext, false, "安装 Chrome 扩展", ext ? "扩展已就绪" : "用于发现并接管 ChatGPT 标签页",
              ext ? nil : "打开扩展商店", { [weak self] in self?.app?.openStore() }),
             (tab, false, "连接 ChatGPT", tab ? "已连接 · 标签页常驻中" : "登录并让一个 ChatGPT 标签页保持打开",
