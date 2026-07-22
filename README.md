@@ -1,5 +1,9 @@
 # Wisp（雾灵）
 
+[![Chrome 应用商店](https://img.shields.io/badge/Chrome%20应用商店-已上架-4E8DFF?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/mghelpfopaeahcpdgjnbffnmkeapgpnn)
+[![macOS](https://img.shields.io/badge/macOS-13+-070F26)](#安装)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 ![Wisp](assets/banner.png)
 
 桌面上一颗液态玻璃悬浮球。点一下，直接和 ChatGPT 官方实时语音开聊。
@@ -29,7 +33,7 @@ curl -fsSL https://raw.githubusercontent.com/0xtootoo29/wisp/main/install.sh | b
 装完自动弹出三步引导，跟着走完就能用：
 
 1. 安装 App —— 已完成 ✓
-2. 到 Chrome 商店装配套扩展（一次点击，装好后引导窗自动打勾）
+2. 到 [Chrome 应用商店](https://chromewebstore.google.com/detail/mghelpfopaeahcpdgjnbffnmkeapgpnn)装配套扩展（一次点击，装好后引导窗自动打勾）
 3. 登录 ChatGPT，引导窗一键帮你打开并固定标签页
 
 ## 使用前提
