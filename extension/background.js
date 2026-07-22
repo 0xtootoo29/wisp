@@ -56,6 +56,16 @@ async function setupTab() {
   try { await chrome.windows.update(tab.windowId, { focused: true }); } catch (e) {}
 }
 
+// 轮询等标签页内容脚本就绪（reload 唤醒 / 新建标签 共用）
+async function waitReady(tabId, tries = 40) {
+  for (let i = 0; i < tries; i++) {
+    await new Promise((r) => setTimeout(r, 500));
+    const s = await ask(tabId, 'state');
+    if (s && (s.state === 'idle' || s.state === 'live')) return s.state;
+  }
+  return null;
+}
+
 async function toggle() {
   const tabs = await chrome.tabs.query({ url: CHATGPT });
   const states = await Promise.all(tabs.map((t) => ask(t.id, 'state')));
@@ -68,19 +78,30 @@ async function toggle() {
     return;
   }
 
-  // 启动：优先用已有可用标签；没有则后台开一个（active:false 不抢焦点，零跳转）
+  // 启动：优先用已有可用标签
   let target = tabs.find((t, i) => states[i] && states[i].state === 'idle');
-  if (!target) {
+
+  // 有 chatgpt 标签但内容脚本没响应（被省内存休眠 / 扩展更新前就开着的旧标签）
+  // → 唤醒复用（固定标签优先），绝不另开新页
+  if (!target && tabs.length) {
+    report('busy');
+    const t = [...tabs].sort((a, b) => Number(b.pinned) - Number(a.pinned))[0];
+    await chrome.tabs.reload(t.id);
+    const st = await waitReady(t.id);
+    if (st === 'live') { report('live'); return; }
+    if (st === 'idle') target = t;
+  }
+
+  // 完全没有 chatgpt 标签 → 后台开一个（active:false 不抢焦点，零跳转）
+  if (!target && !tabs.length) {
     report('busy');
     const created = await chrome.tabs.create({ url: 'https://chatgpt.com/', active: false });
-    for (let i = 0; i < 40; i++) {
-      await new Promise((r) => setTimeout(r, 500));
-      const s = await ask(created.id, 'state');
-      if (s && s.state === 'idle') { target = created; break; }
-      if (s && s.state === 'live') { report('live'); return; }
-    }
-    if (!target) { report('idle'); return; } // 20s 没就绪（未登录等）→ 放弃
+    const st = await waitReady(created.id);
+    if (st === 'live') { report('live'); return; }
+    if (st === 'idle') target = created;
   }
+
+  if (!target) { report('idle'); return; } // 20s 没就绪（未登录等）→ 放弃
 
   report('busy');
   await ask(target.id, 'start');
