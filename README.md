@@ -36,7 +36,15 @@ curl -fsSL https://raw.githubusercontent.com/0xtootoo29/wisp/main/install.sh | b
 2. 到 [Chrome 应用商店](https://chromewebstore.google.com/detail/mghelpfopaeahcpdgjnbffnmkeapgpnn)装配套扩展（一次点击，装好后引导窗自动打勾）
 3. 登录 ChatGPT，引导窗一键帮你打开并固定标签页
 
-> 不方便开终端？把上面那行命令粘贴给 ChatGPT / Claude / Codex 等任意能执行命令的 AI 助手，让它替你运行即可。
+### 或者，让 AI 替你装（最省事）
+
+把下面整段复制给你的 Claude / Codex / 任意能执行命令的 AI 助手：
+
+```text
+帮我安装 Wisp（macOS 桌面悬浮球，一键唤起 ChatGPT 官方语音，开源项目：https://github.com/0xtootoo29/wisp）。
+请运行：curl -fsSL https://raw.githubusercontent.com/0xtootoo29/wisp/main/install.sh | bash
+安装完成后，告诉我弹出的三步引导窗需要我做什么。
+```
 
 ## 使用前提
 
