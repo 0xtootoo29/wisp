@@ -21,6 +21,21 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg.type === 'state') { sendResponse({ state: voiceState() }); return; }
   if (msg.type === 'start') { const b = find(START_LABELS); if (b) b.click(); sendResponse({ ok: !!b }); return; }
   if (msg.type === 'end') { const b = find(END_LABELS); if (b) b.click(); sendResponse({ ok: !!b }); return; }
+  if (msg.type === 'newchat') {
+    // 点侧栏「新聊天」（SPA 切换，快、不重载页面）；找不到按钮由 SW 走导航兜底
+    const sels = [
+      '[data-testid="create-new-chat-button"]',
+      'a[aria-label="新聊天"]', 'button[aria-label="新聊天"]',
+      'a[aria-label="新建聊天"]', 'button[aria-label="新建聊天"]',
+      'a[aria-label="New chat"]', 'button[aria-label="New chat"]',
+    ];
+    for (const s of sels) {
+      const el = document.querySelector(s);
+      if (el) { el.click(); sendResponse({ ok: true }); return; }
+    }
+    sendResponse({ ok: false });
+    return;
+  }
 });
 
 // 状态变化推送（400ms 防抖，只推确定态，unknown 过渡不打扰）

@@ -104,8 +104,30 @@ async function toggle() {
   if (!target) { report('idle'); return; } // 20s 没就绪（未登录等）→ 放弃
 
   report('busy');
+  await ensureFreshChat(target);   // 默认在全新会话里开始语音，不接旧对话
   await ask(target.id, 'start');
   // 连上/失败由 voice.js 的 MutationObserver 实时推送，无需轮询
+}
+
+// 标签停在旧对话（/c/…）时先切到新聊天：优先 SPA 点按钮，失败则导航到根路径
+async function ensureFreshChat(tab) {
+  try {
+    const info = await chrome.tabs.get(tab.id);
+    if (new URL(info.url).pathname === '/') return;
+  } catch (e) { return; }
+  const r = await ask(tab.id, 'newchat');
+  if (!r || !r.ok) await chrome.tabs.update(tab.id, { url: 'https://chatgpt.com/' });
+  for (let i = 0; i < 30; i++) {
+    await new Promise((res) => setTimeout(res, 300));
+    try {
+      const t = await chrome.tabs.get(tab.id);
+      if (new URL(t.url).pathname === '/') {
+        const s = await ask(tab.id, 'state');
+        if (s && s.state === 'idle') return;
+      }
+    } catch (e) {}
+  }
+  // 兜底：超时也继续，让 start 自行尝试
 }
 
 // content script 状态推送 → 转发给 App
