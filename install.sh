@@ -22,12 +22,16 @@ say "下载 Wisp.app ..."
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 curl -fsSL "https://github.com/$REPO/releases/latest/download/Wisp.zip" -o "$TMP/Wisp.zip"
+# 先解压到暂存区并验证，确认无误再替换 —— 任何一步失败都不动用户现有的 App
+ditto -xk "$TMP/Wisp.zip" "$TMP/staging"
+STAGED="$TMP/staging/Wisp.app"
+[ -x "$STAGED/Contents/MacOS/GPTLive" ] || die "下载的安装包不完整，已中止（未改动现有安装）。"
+xattr -dr com.apple.quarantine "$STAGED" 2>/dev/null || true
 mkdir -p "$APP_DIR"
 pkill -x GPTLive 2>/dev/null || true
 rm -rf "$APP"
-ditto -xk "$TMP/Wisp.zip" "$APP_DIR"
-xattr -dr com.apple.quarantine "$APP" 2>/dev/null || true
-[ -x "$APP/Contents/MacOS/GPTLive" ] || die "解压后未找到可执行文件，安装失败。"
+mv "$STAGED" "$APP"
+[ -x "$APP/Contents/MacOS/GPTLive" ] || die "安装失败。"
 
 # 2. Native Messaging 清单（Chrome 由此找到 wisp-bridge，无需任何授权弹窗）
 say "配置浏览器桥接 ..."

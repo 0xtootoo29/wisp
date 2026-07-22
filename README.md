@@ -36,6 +36,12 @@ curl -fsSL https://raw.githubusercontent.com/0xtootoo29/wisp/main/install.sh | b
 2. 到 [Chrome 应用商店](https://chromewebstore.google.com/detail/mghelpfopaeahcpdgjnbffnmkeapgpnn)装配套扩展（一次点击，装好后引导窗自动打勾）
 3. 登录 ChatGPT，引导窗一键帮你打开并固定标签页
 
+### 或者手动下载
+
+不想用命令行，可以从 [Releases](https://github.com/0xtootoo29/wisp/releases/latest) 下载 **Wisp.dmg**，把 Wisp.app 拖进「应用程序」。
+
+> 首次打开：Wisp 暂未做 Apple 公证，第一次会被系统拦一下——在「应用程序」里**右键点 Wisp → 打开**（或到 系统设置 → 隐私与安全性 → 点「仍要打开」）。只需一次。上面那行 `curl` 安装则不需要这一步。
+
 ## 使用前提
 
 只有两条：
